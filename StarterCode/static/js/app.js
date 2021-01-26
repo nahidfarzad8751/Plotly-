@@ -12,14 +12,11 @@ function buildMetadata(sample) {
 
     BLANK.html("");
 
-    Object.defineProperties(result).forEach(([key,value]) => {
+    Object.entries(result).forEach(([key,value]) => {
       BLANK.append("h6").text(`${key.toUpperCase()}: ${value}`);
     });
   });
 }
-
-
-
 
 
 
@@ -82,9 +79,6 @@ function buildCharts(sample) {
       };
 
 
-
-
-
 //BUILD HORIZONTAL BAR CHART  
 // create drop down menu & use sample_values as the values for the bar chart.
 
@@ -92,12 +86,12 @@ function buildCharts(sample) {
     });
   }
 
-  function init() {
+function init() {
     
-    var selector = d3.select("#selDataset");
+  var selector = d3.select("#selDataset");
   
     
-    d3.json("samples.json").then((data) => {
+  d3.json("samples.json").then((data) => {
       var sampNames = data.names;
   
       sampNames.forEach((sample) => {
@@ -114,11 +108,12 @@ function buildCharts(sample) {
     });
   }
   
-  function optionChanged(newSample) {
+function optionChanged(newSample) {
     buildCharts(newSample);
     buildMetadata(newSample);
   }
   
+init();
+
   
-  init();
   
